@@ -1,6 +1,7 @@
 package ttlcache
 
 import (
+	"github.com/TykTechnologies/leakybucket"
 	"sync"
 	"time"
 )
@@ -8,7 +9,7 @@ import (
 // Item represents a record in the cache map
 type Item struct {
 	sync.RWMutex
-	data    string
+	data    *leakybucket.Bucket
 	expires *time.Time
 }
 
